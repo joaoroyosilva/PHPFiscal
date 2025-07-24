@@ -11,7 +11,7 @@ class Icms10 extends IcmsBase
         protected float $despesasAcessorias,
         protected float $valorDesconto,
         protected float $aliqIcmsProprio,
-        protected float $aliqIcmsST,
+        protected float $aliqIcmsSt,
         protected float $mva,
         protected float $valorIpi = 0,
         protected bool $icmsSobreIpi = false
@@ -27,16 +27,15 @@ class Icms10 extends IcmsBase
         );
     }
 
-    public function baseIcmsST()
+    public function baseIcmsSt()
     {
-        $baseIcmsST = new BaseIcmsST($this->baseCalculo(), $this->mva);
-        return $baseIcmsST->gerarBaseIcmsST();
+        $baseIcmsSt = new BaseIcmsSt($this->baseCalculo(), $this->mva);
+        return $baseIcmsSt->gerarBaseIcmsSt();
     }
 
-    public function valorIcmsST()
+    public function valorIcmsSt()
     {
-        $valorIcmsST = new ValorIcmsST($this->baseIcmsST(), $this->aliqIcmsST, $this->valor());
-        return $valorIcmsST->gerarValorIcmsST();
+        $valorIcmsSt = new ValorIcmsSt($this->baseIcmsSt(), $this->aliqIcmsSt, $this->valor());
+        return $valorIcmsSt->gerarValorIcmsSt();
     }
-
 }

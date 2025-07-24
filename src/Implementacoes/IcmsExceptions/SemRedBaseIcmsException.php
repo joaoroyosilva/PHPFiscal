@@ -8,6 +8,6 @@ class SemRedBaseIcmsException extends Exception
 {
     public function __construct()
     {
-        parent::__construct("Este CST/CSOSN não possui redução de base de ICMS. Verifique a propriedade 'PossuiRedBCIcms' antes de acionar o método de cálculo.");
+        parent::__construct("Este CSt/CSOSN não possui redução de base de ICMS. Verifique a propriedade 'PossuiRedBCIcms' antes de acionar o método de cálculo.");
     }
 }

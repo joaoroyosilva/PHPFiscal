@@ -18,9 +18,9 @@ class Icms900 implements IIcms
         return $this->Icms->PossuiIcmsProprio;
     }
 
-    public function possuiIcmsST()
+    public function possuiIcmsSt()
     {
-        return $this->Icms->PossuiIcmsST;
+        return $this->Icms->PossuiIcmsSt;
     }
 
     public function possuiRedBCIcmsProprio()
@@ -28,9 +28,9 @@ class Icms900 implements IIcms
         return $this->Icms->PossuiRedBCIcmsProprio;
     }
 
-    public function possuiRedBCIcmsST()
+    public function possuiRedBCIcmsSt()
     {
-        return $this->Icms->PossuiRedBCIcmsST;
+        return $this->Icms->PossuiRedBCIcmsSt;
     }
 
     public function baseIcms()
@@ -38,9 +38,9 @@ class Icms900 implements IIcms
         return $this->Icms->baseIcms();
     }
 
-    public function baseIcmsST()
+    public function baseIcmsSt()
     {
-        return $this->Icms->baseIcmsST();
+        return $this->Icms->baseIcmsSt();
     }
 
     public function valorIcms()
@@ -48,8 +48,8 @@ class Icms900 implements IIcms
         return $this->Icms->valorIcms();
     }
 
-    public function valorIcmsST()
+    public function valorIcmsSt()
     {
-        return $this->Icms->valorIcmsST();
+        return $this->Icms->valorIcmsSt();
     }
 }

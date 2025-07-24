@@ -2,104 +2,46 @@
 
 namespace Sacfiscal\Phpfiscal\Implementacoes\Icms;
 
-use Exception;
-use Sacfiscal\Phpfiscal\Implementacoes\IcmsExceptions\SemRedBaseIcmsException;
-use Sacfiscal\Phpfiscal\Implementacoes\IcmsExceptions\SemRedBaseIcmsSTException;
-use Sacfiscal\Phpfiscal\Interfaces\IIcms;
-
-class Icms30 implements IIcms
+class Icms30 extends IcmsBase
 {
-    private $valorProduto;
-    private $valorFrete;
-    private $valorSeguro;
-    private $despesasAcessorias;
-    private $valorIpi;
-    private $valorDesconto;
-    private $aliqIcmsProprio;
-    private $aliqIcmsST;
-    private $Mva;
-    private $baseCalculo;
-
     public function __construct(
-        $valorProduto,
-        $valorFrete,
-        $valorSeguro,
-        $despesasAcessorias,
-        $valorIpi,
-        $valorDesconto,
-        $aliqIcmsProprio,
-        $aliqIcmsST,
-        $mva
+        protected float $valorProduto,
+        protected float $valorFrete,
+        protected float $valorSeguro,
+        protected float $despesasAcessorias,
+        protected float $valorDesconto,
+        protected float $aliqIcmsProprio,
+        protected float $aliqIcmsSt,
+        protected float $mva,
+        protected float $valorIpi = 0,
+        protected float $percentualReducaoSt = 0,
+        protected bool $icmsSobreIpi = false
     ) {
-        $this->valorProduto = $valorProduto;
-        $this->valorFrete = $valorFrete;
-        $this->valorSeguro = $valorSeguro;
-        $this->despesasAcessorias = $despesasAcessorias;
-        $this->valorIpi = $valorIpi;
-        $this->valorDesconto = $valorDesconto;
-        $this->aliqIcmsProprio = $aliqIcmsProprio;
-        $this->aliqIcmsST = $aliqIcmsST;
-        $this->Mva = $mva;
-        $this->baseCalculo = new baseIcms(
-            $this->valorProduto,
-            $this->valorFrete,
-            $this->valorSeguro,
-            $this->despesasAcessorias,
-            $this->valorIpi,
-            $this->valorDesconto
+        parent::__construct(
+            valorProduto: $valorProduto,
+            valorFrete: $valorFrete,
+            valorSeguro:$valorSeguro,
+            despesasAcessorias:$despesasAcessorias,
+            valorIpi:$valorIpi,
+            valorDesconto:$valorDesconto,
+            aliqIcmsProprio:$aliqIcmsProprio
         );
     }
 
-    public function possuiIcmsProprio()
+    public function baseIcmsSt()
     {
-        return true;
+        $baseIcmsSt = new BaseIcmsSt($this->baseCalculo(), $this->mva, $this->percentualReducaoSt);
+        return $baseIcmsSt->gerarBaseIcmsSt();
     }
 
-    public function possuiIcmsST()
+    public function valorIcmsSt()
     {
-        return true;
+        $valorIcmsSt = new ValorIcmsSt($this->baseIcmsSt(), $this->aliqIcmsSt, $this->valor());
+        return $valorIcmsSt->gerarValorIcmsSt();
     }
 
-    public function possuiRedBCIcmsProprio()
+    public function valorIcmsDesonerado()
     {
-        return false;
-    }
-
-    public function possuiRedBCIcmsST()
-    {
-        return false;
-    }
-
-    public function baseIcms()
-    {
-        return $this->baseCalculo->GerarBaseIcms();
-    }
-
-    public function valorIcms()
-    {
-        $valorIcms = new ValorIcms($this->baseIcms(), $this->aliqIcmsProprio);
-        return $valorIcms->GerarValorIcms();
-    }
-
-    public function baseIcmsST()
-    {
-        $baseIcmsST = new baseIcmsST($this->baseIcms(), $this->Mva);
-        return $baseIcmsST->GerarBaseIcmsST();
-    }
-
-    public function valorIcmsST()
-    {
-        $valorIcmsST = new ValorIcmsST($this->baseIcmsST(), $this->aliqIcmsST, $this->valorIcms());
-        return $valorIcmsST->GerarValorIcmsST();
-    }
-
-    public function valorRedBaseIcms()
-    {
-        throw new Exception(new SemRedBaseIcmsException());
-    }
-
-    public function valorRedBaseIcmsST()
-    {
-        throw new Exception(new SemRedBaseIcmsSTException());
+        return $this->valor();
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-use Sacfiscal\Phpfiscal\Implementacoes\Icms\Icms10;
+use Sacfiscal\Phpfiscal\Implementacoes\Icms\Icms30;
 
-test("testa cálculo icms st", function () {
+test("testa cálculo icms cst 30", function () {
     $valorProduto = 135.0;
     $valorFrete = 7.5;
     $valorSeguro = 3;
@@ -11,9 +11,10 @@ test("testa cálculo icms st", function () {
     $aliquota = 18;
     $mva = 35;
     $aliquotaSt = 18;
+    $percentualReducaoSt = 10;
 
-    /** @var Icms10 */
-    $icms = new Icms10(
+    /** @var Icms30 */
+    $icms = new Icms30(
         valorProduto: $valorProduto,
         aliqIcmsProprio: $aliquota,
         despesasAcessorias: $despesasAcessorias,
@@ -21,7 +22,8 @@ test("testa cálculo icms st", function () {
         valorDesconto: $valorDesconto,
         valorSeguro: $valorSeguro,
         mva: $mva,
-        aliqIcmsSt: $aliquotaSt
+        aliqIcmsSt: $aliquotaSt,
+        percentualReducaoSt: $percentualReducaoSt
     );
 
     $bc = $icms->baseCalculo();
@@ -33,6 +35,6 @@ test("testa cálculo icms st", function () {
     expect($bc)->toBe(133.5);
     expect($valor)->toBe(24.03);
 
-    expect($bcSt)->toBe(180.23);
-    expect($valorSt)->toBe(8.41);
+    expect($bcSt)->toBe(162.21);
+    expect($valorSt)->toBe(5.17);
 });

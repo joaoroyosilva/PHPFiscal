@@ -4,7 +4,7 @@ namespace Sacfiscal\Phpfiscal\Implementacoes\Icms;
 
 use Exception;
 use Sacfiscal\Phpfiscal\Implementacoes\IcmsExceptions\SemBasePropriaException;
-use Sacfiscal\Phpfiscal\Implementacoes\IcmsExceptions\SemICMSSTException;
+use Sacfiscal\Phpfiscal\Implementacoes\IcmsExceptions\SemICMSStException;
 use Sacfiscal\Phpfiscal\Interfaces\IIcms;
 
 class Icms60 implements IIcms
@@ -14,7 +14,7 @@ class Icms60 implements IIcms
         return false;
     }
 
-    public function possuiIcmsST()
+    public function possuiIcmsSt()
     {
         return false;
     }
@@ -24,7 +24,7 @@ class Icms60 implements IIcms
         return false;
     }
 
-    public function possuiRedBCIcmsST()
+    public function possuiRedBCIcmsSt()
     {
         return false;
     }
@@ -39,13 +39,13 @@ class Icms60 implements IIcms
         throw new Exception(new SemBasePropriaException());
     }
 
-    public function baseIcmsST()
+    public function baseIcmsSt()
     {
-        throw new Exception(new SemICMSSTException());
+        throw new Exception(new SemICMSStException());
     }
 
-    public function valorIcmsST()
+    public function valorIcmsSt()
     {
-        throw new Exception(new SemICMSSTException());
+        throw new Exception(new SemICMSStException());
     }
 }

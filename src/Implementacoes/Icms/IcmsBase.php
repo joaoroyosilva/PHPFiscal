@@ -19,7 +19,7 @@ abstract class IcmsBase implements Tributo
     /**
      *  @var bool
      */
-    protected bool $possuiIcmsST = false;
+    protected bool $possuiIcmsSt = false;
 
     /**
      *  @var bool
@@ -29,7 +29,7 @@ abstract class IcmsBase implements Tributo
     /**
      *  @var bool
      */
-    protected bool $possuiRedBCIcmsST = false;
+    protected bool $possuiRedBCIcmsSt = false;
 
     public function __construct(
         protected float $valorProduto,

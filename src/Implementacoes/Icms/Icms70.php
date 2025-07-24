@@ -14,8 +14,8 @@ class Icms70 implements IIcms
     private $valorDesconto;
     private $aliqIcmsProprio;
     private $aliqRedBcIcms;
-    private $aliqIcmsST;
-    private $aliqRedBcIcmsST;
+    private $aliqIcmsSt;
+    private $aliqRedBcIcmsSt;
     private $Mva;
     private $baseCalculo;
     private $baseCalculoReduzida;
@@ -29,8 +29,8 @@ class Icms70 implements IIcms
         $valorDesconto,
         $aliqIcmsProprio,
         $aliqRedBcIcms,
-        $aliqIcmsST,
-        $aliqRedBcIcmsST,
+        $aliqIcmsSt,
+        $aliqRedBcIcmsSt,
         $mva
     ) {
         $this->valorProduto = $valorProduto;
@@ -41,8 +41,8 @@ class Icms70 implements IIcms
         $this->valorDesconto = $valorDesconto;
         $this->aliqIcmsProprio = $aliqIcmsProprio;
         $this->aliqRedBcIcms = $aliqRedBcIcms;
-        $this->aliqIcmsST = $aliqIcmsST;
-        $this->aliqRedBcIcmsST = $aliqRedBcIcmsST;
+        $this->aliqIcmsSt = $aliqIcmsSt;
+        $this->aliqRedBcIcmsSt = $aliqRedBcIcmsSt;
         $this->Mva = $mva;
         $this->baseCalculo = new baseIcms(
             $this->valorProduto,
@@ -68,7 +68,7 @@ class Icms70 implements IIcms
         return true;
     }
 
-    public function possuiIcmsST()
+    public function possuiIcmsSt()
     {
         return true;
     }
@@ -78,9 +78,9 @@ class Icms70 implements IIcms
         return ($this->aliqRedBcIcms > 0);
     }
 
-    public function possuiRedBCIcmsST()
+    public function possuiRedBCIcmsSt()
     {
-        return ($this->aliqRedBcIcmsST > 0);
+        return ($this->aliqRedBcIcmsSt > 0);
     }
 
     public function baseIcms()
@@ -98,27 +98,27 @@ class Icms70 implements IIcms
         return $valorIcms->GerarValorIcms();
     }
 
-    public function baseIcmsST()
+    public function baseIcmsSt()
     {
-        if ($this->PossuiRedBCIcmsST()) {
-            $baseReduzidaIcmsST = new baseReduzidaIcmsST(
+        if ($this->PossuiRedBCIcmsSt()) {
+            $baseReduzidaIcmsSt = new baseReduzidaIcmsSt(
                 $this->valorProduto,
                 $this->valorFrete,
                 $this->valorSeguro,
                 $this->despesasAcessorias,
                 $this->valorIpi,
                 $this->valorDesconto,
-                $this->aliqRedBcIcmsST
+                $this->aliqRedBcIcmsSt
             );
-            return $baseReduzidaIcmsST->GerarBaseReduzidaIcmsST();
+            return $baseReduzidaIcmsSt->GerarBaseReduzidaIcmsSt();
         } else {
-            $baseIcmsST = new baseIcmsST($this->baseIcms(), $this->Mva);
-            return $baseIcmsST->GerarBaseIcmsST();
+            $baseIcmsSt = new baseIcmsSt($this->baseIcms(), $this->Mva);
+            return $baseIcmsSt->GerarBaseIcmsSt();
         }
     }
 
-    public function valorIcmsST()
+    public function valorIcmsSt()
     {
-        return (($this->baseIcmsST() * ($this->aliqIcmsST / 100)) - $this->valorIcms());
+        return (($this->baseIcmsSt() * ($this->aliqIcmsSt / 100)) - $this->valorIcms());
     }
 }

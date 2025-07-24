@@ -3,7 +3,7 @@
 namespace Sacfiscal\Phpfiscal\Implementacoes\Icms;
 
 use Exception;
-use Sacfiscal\Phpfiscal\Implementacoes\IcmsExceptions\SemICMSSTException;
+use Sacfiscal\Phpfiscal\Implementacoes\IcmsExceptions\SemICMSStException;
 use Sacfiscal\Phpfiscal\Interfaces\IIcms;
 
 class Icms51 implements IIcms
@@ -51,7 +51,7 @@ class Icms51 implements IIcms
         return true;
     }
 
-    public function possuiIcmsST()
+    public function possuiIcmsSt()
     {
         return false;
     }
@@ -61,7 +61,7 @@ class Icms51 implements IIcms
         return true;
     }
 
-    public function possuiRedBCIcmsST()
+    public function possuiRedBCIcmsSt()
     {
         return false;
     }
@@ -82,13 +82,13 @@ class Icms51 implements IIcms
         return ($this->valorIcms() - (($this->valorIcms() * ($this->aliqDifIcms / 100))));
     }
 
-    public function baseIcmsST()
+    public function baseIcmsSt()
     {
-        throw new Exception(new SemICMSSTException());
+        throw new Exception(new SemICMSStException());
     }
 
-    public function valorIcmsST()
+    public function valorIcmsSt()
     {
-        throw new Exception(new SemICMSSTException());
+        throw new Exception(new SemICMSStException());
     }
 }

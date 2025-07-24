@@ -4,9 +4,9 @@ namespace Sacfiscal\Phpfiscal\Implementacoes\Icms;
 
 use Exception;
 use Sacfiscal\Phpfiscal\Implementacoes\IcmsExceptions\SemBasePropriaException;
-use Sacfiscal\Phpfiscal\Implementacoes\IcmsExceptions\SemICMSSTException;
+use Sacfiscal\Phpfiscal\Implementacoes\IcmsExceptions\SemICMSStException;
 use Sacfiscal\Phpfiscal\Implementacoes\IcmsExceptions\SemRedBaseIcmsException;
-use Sacfiscal\Phpfiscal\Implementacoes\IcmsExceptions\SemRedBaseIcmsSTException;
+use Sacfiscal\Phpfiscal\Implementacoes\IcmsExceptions\SemRedBaseIcmsStException;
 use Sacfiscal\Phpfiscal\Interfaces\IIcms;
 
 class SemIcms implements IIcms
@@ -16,7 +16,7 @@ class SemIcms implements IIcms
         return false;
     }
 
-    public function possuiIcmsST()
+    public function possuiIcmsSt()
     {
         return false;
     }
@@ -26,7 +26,7 @@ class SemIcms implements IIcms
         return false;
     }
 
-    public function possuiRedBCIcmsST()
+    public function possuiRedBCIcmsSt()
     {
         return false;
     }
@@ -36,9 +36,9 @@ class SemIcms implements IIcms
         throw new Exception(new SemBasePropriaException());
     }
 
-    public function baseIcmsST()
+    public function baseIcmsSt()
     {
-        throw new Exception(new SemICMSSTException());
+        throw new Exception(new SemICMSStException());
     }
 
     public function percRedBaseIcms()
@@ -46,9 +46,9 @@ class SemIcms implements IIcms
         throw new Exception(new SemRedBaseIcmsException());
     }
 
-    public function percRedBaseIcmsST()
+    public function percRedBaseIcmsSt()
     {
-        throw new Exception(new SemRedBaseIcmsSTException());
+        throw new Exception(new SemRedBaseIcmsStException());
     }
 
     public function valorIcms()
@@ -56,9 +56,9 @@ class SemIcms implements IIcms
         throw new Exception(new SemBasePropriaException());
     }
 
-    public function valorIcmsST()
+    public function valorIcmsSt()
     {
-        throw new Exception(new SemICMSSTException());
+        throw new Exception(new SemICMSStException());
     }
 
     public function valorRedBaseIcms()
@@ -66,8 +66,8 @@ class SemIcms implements IIcms
         throw new Exception(new SemRedBaseIcmsException());
     }
 
-    public function valorRedBaseIcmsST()
+    public function valorRedBaseIcmsSt()
     {
-        throw new Exception(new SemRedBaseIcmsSTException());
+        throw new Exception(new SemRedBaseIcmsStException());
     }
 }

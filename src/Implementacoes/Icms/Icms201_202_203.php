@@ -4,7 +4,7 @@ namespace Sacfiscal\Phpfiscal\Implementacoes\Icms;
 
 use Exception;
 use Sacfiscal\Phpfiscal\Implementacoes\IcmsExceptions\SemRedBaseIcmsException;
-use Sacfiscal\Phpfiscal\Implementacoes\IcmsExceptions\SemRedBaseIcmsSTException;
+use Sacfiscal\Phpfiscal\Implementacoes\IcmsExceptions\SemRedBaseIcmsStException;
 
 class Icms201_202_203
 {
@@ -15,7 +15,7 @@ class Icms201_202_203
     private $valorIpi;
     private $valorDesconto;
     private $aliqIcmsProprio;
-    private $aliqIcmsST;
+    private $aliqIcmsSt;
     private $Mva;
     private $baseCalculo;
 
@@ -27,7 +27,7 @@ class Icms201_202_203
         $valorIpi,
         $valorDesconto,
         $aliqIcmsProprio,
-        $aliqIcmsST,
+        $aliqIcmsSt,
         $mva
     ) {
         $this->valorProduto = $valorProduto;
@@ -37,7 +37,7 @@ class Icms201_202_203
         $this->valorIpi = $valorIpi;
         $this->valorDesconto = $valorDesconto;
         $this->aliqIcmsProprio = $aliqIcmsProprio;
-        $this->aliqIcmsST = $aliqIcmsST;
+        $this->aliqIcmsSt = $aliqIcmsSt;
         $this->Mva = $mva;
         $this->baseCalculo = new baseIcms(
             $this->valorProduto,
@@ -54,7 +54,7 @@ class Icms201_202_203
         return true;
     }
 
-    public function possuiIcmsST()
+    public function possuiIcmsSt()
     {
         return true;
     }
@@ -64,7 +64,7 @@ class Icms201_202_203
         return false;
     }
 
-    public function possuiRedBCIcmsST()
+    public function possuiRedBCIcmsSt()
     {
         return false;
     }
@@ -80,16 +80,16 @@ class Icms201_202_203
         return $valorIcms->GerarValorIcms();
     }
 
-    public function baseIcmsST()
+    public function baseIcmsSt()
     {
-        $baseIcmsST = new baseIcmsST($this->baseIcms(), $this->Mva);
-        return $baseIcmsST->GerarBaseIcmsST();
+        $baseIcmsSt = new baseIcmsSt($this->baseIcms(), $this->Mva);
+        return $baseIcmsSt->GerarBaseIcmsSt();
     }
 
-    public function valorIcmsST()
+    public function valorIcmsSt()
     {
-        $valorIcmsST = new ValorIcmsST($this->baseIcmsST(), $this->aliqIcmsST, $this->valorIcms());
-        return $valorIcmsST->GerarValorIcmsST();
+        $valorIcmsSt = new ValorIcmsSt($this->baseIcmsSt(), $this->aliqIcmsSt, $this->valorIcms());
+        return $valorIcmsSt->GerarValorIcmsSt();
     }
 
     public function valorRedBaseIcms()
@@ -97,8 +97,8 @@ class Icms201_202_203
         throw new Exception(new SemRedBaseIcmsException());
     }
 
-    public function valorRedBaseIcmsST()
+    public function valorRedBaseIcmsSt()
     {
-        throw new Exception(new SemRedBaseIcmsSTException());
+        throw new Exception(new SemRedBaseIcmsStException());
     }
 }
